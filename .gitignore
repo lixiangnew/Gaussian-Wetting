@@ -1,0 +1,15 @@
+# Only publish the A/B research prototype and repository documentation.
+/*
+!/.gitignore
+!/README.md
+!/requirements.txt
+!/stage_a_internal/
+!/stage_b_transport/
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.env.*
+.venv/
+venv/

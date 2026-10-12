@@ -1,0 +1,59 @@
+{
+  "resolution_check": [
+    {
+      "resolution": 4,
+      "gaussians": 64,
+      "edges": 144,
+      "components": 1,
+      "material_volume_m3": 0.00024000000000000003,
+      "pore_volume_m3": 0.000144,
+      "capacity_kg": 0.144,
+      "initial_water_kg": 0.0,
+      "volume_relative_error": 2.220446049250313e-16,
+      "capacity_relative_error": 2.220446049250313e-16
+    },
+    {
+      "resolution": 8,
+      "gaussians": 512,
+      "edges": 1344,
+      "components": 1,
+      "material_volume_m3": 0.00023999999999999998,
+      "pore_volume_m3": 0.00014400000000000003,
+      "capacity_kg": 0.14400000000000002,
+      "initial_water_kg": 0.0,
+      "volume_relative_error": 1.1102230246251565e-16,
+      "capacity_relative_error": 0.0
+    },
+    {
+      "resolution": 16,
+      "gaussians": 4096,
+      "edges": 11520,
+      "components": 1,
+      "material_volume_m3": 0.00024000000000000003,
+      "pore_volume_m3": 0.00014400000000000003,
+      "capacity_kg": 0.14400000000000002,
+      "initial_water_kg": 0.0,
+      "volume_relative_error": 2.220446049250313e-16,
+      "capacity_relative_error": 0.0
+    }
+  ],
+  "kernel_width_check": {
+    "sigma_ratios": [
+      0.3,
+      1.2
+    ],
+    "capacity_unchanged": true,
+    "graph_unchanged": true
+  },
+  "air_gap_check": {
+    "gaussians": 512,
+    "edges": 1280,
+    "components": 2,
+    "material_volume_m3": 0.000216,
+    "pore_volume_m3": 0.0001296,
+    "capacity_kg": 0.1296,
+    "initial_water_kg": 0.0,
+    "cross_domain_edges": 0
+  },
+  "scope": "Stage A fixed box domains only. No transport, CUDA, or wet rendering."
+}

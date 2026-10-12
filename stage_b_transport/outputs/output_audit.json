@@ -1,0 +1,51 @@
+{
+  "python": "3.9.23",
+  "numpy": "2.0.1",
+  "checked_local_links": 5,
+  "svg_files_parsed": 12,
+  "max_history_mass_residual_kg": 1.6525409513024059e-15,
+  "state_ranges": {
+    "bottom_gravity_state": [
+      0.04999993138020197,
+      0.9672854365428025
+    ],
+    "bottom_no_gravity_state": [
+      0.05,
+      0.9706877431393655
+    ],
+    "dry_eps_001_state": [
+      0.0,
+      0.24774303860878383
+    ],
+    "dry_eps_002_state": [
+      0.0,
+      0.24891110648453893
+    ],
+    "epsilon_half_state": [
+      0.05,
+      0.9733535530131294
+    ],
+    "half_dt_state": [
+      0.05,
+      0.9733534268662419
+    ],
+    "impermeable_state": [
+      0.05,
+      0.05
+    ],
+    "surface_only_state": [
+      0.05,
+      1.0
+    ],
+    "tighter_tolerance_state": [
+      0.05,
+      0.9733558595861085
+    ],
+    "top_state": [
+      0.05,
+      0.9733535530131294
+    ]
+  },
+  "status": "passed",
+  "note": "SVG XML and data checked; not a screenshot-based layout review."
+}

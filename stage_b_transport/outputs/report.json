@@ -1,0 +1,175 @@
+{
+  "status": "completed",
+  "parameters": "Synthetic SI parameters; see PLAN.md and source.",
+  "analytic": [
+    {
+      "n": 16,
+      "l2_error": 6.578569845083416e-05,
+      "order": null,
+      "accepted_steps": 148,
+      "rejected_steps": 1,
+      "limited_edge_updates": 0,
+      "max_mass_residual_kg": 4.336808689942018e-19
+    },
+    {
+      "n": 32,
+      "l2_error": 1.6188419992852923e-05,
+      "order": 2.022811797955111,
+      "accepted_steps": 512,
+      "rejected_steps": 0,
+      "limited_edge_updates": 0,
+      "max_mass_residual_kg": 8.673617379884035e-19
+    },
+    {
+      "n": 64,
+      "l2_error": 4.048609389356099e-06,
+      "order": 1.999463820593847,
+      "accepted_steps": 2048,
+      "rejected_steps": 0,
+      "limited_edge_updates": 0,
+      "max_mass_residual_kg": 1.3010426069826053e-18
+    }
+  ],
+  "wetting": {
+    "top": {
+      "absorbed_kg": 0.0008975559347036595,
+      "surface_kg": 2.4440652961449438e-06,
+      "free_kg": 0.0002999999999999662,
+      "max_s": 0.9733535530131294,
+      "max_h_m": 1.2220326480724796e-05,
+      "accepted_steps": 8935,
+      "rejected_steps": 19,
+      "limited_edge_updates": 140864,
+      "max_mass_residual_kg": 4.198030811863873e-16
+    },
+    "impermeable": {
+      "absorbed_kg": 0.0,
+      "surface_kg": 0.000899999999999988,
+      "free_kg": 0.00030000000000001195,
+      "max_s": 0.05,
+      "max_h_m": 0.0044999999999999415,
+      "accepted_steps": 100,
+      "rejected_steps": 0,
+      "limited_edge_updates": 0,
+      "max_mass_residual_kg": 4.336808689942018e-19
+    },
+    "surface_only": {
+      "absorbed_kg": 0.0005700000000000004,
+      "surface_kg": 0.00032999999999983715,
+      "free_kg": 0.0002999999999997128,
+      "max_s": 1.0,
+      "max_h_m": 0.0016499999999992148,
+      "accepted_steps": 5734,
+      "rejected_steps": 6,
+      "limited_edge_updates": 90880,
+      "max_mass_residual_kg": 4.508112633194727e-16
+    },
+    "bottom_gravity": {
+      "absorbed_kg": 0.0008840209266884657,
+      "surface_kg": 1.597907331138384e-05,
+      "free_kg": 0.0002999999999999058,
+      "max_s": 0.9672854365428025,
+      "max_h_m": 7.989536655691928e-05,
+      "accepted_steps": 8188,
+      "rejected_steps": 25,
+      "limited_edge_updates": 128744,
+      "max_mass_residual_kg": 4.206704429243757e-16
+    },
+    "bottom_no_gravity": {
+      "absorbed_kg": 0.0008918170440309907,
+      "surface_kg": 8.182955968848433e-06,
+      "free_kg": 0.00029999999999993324,
+      "max_s": 0.9706877431393655,
+      "max_h_m": 4.0914779844242224e-05,
+      "accepted_steps": 8546,
+      "rejected_steps": 27,
+      "limited_edge_updates": 134440,
+      "max_mass_residual_kg": 4.200199216208844e-16
+    },
+    "half_dt": {
+      "absorbed_kg": 0.0008975558363787128,
+      "surface_kg": 2.444163621097504e-06,
+      "free_kg": 0.000299999999999966,
+      "max_s": 0.9733534268662419,
+      "max_h_m": 1.222081810548755e-05,
+      "accepted_steps": 8935,
+      "rejected_steps": 20,
+      "limited_edge_updates": 140864,
+      "max_mass_residual_kg": 4.204536024898786e-16
+    },
+    "epsilon_half": {
+      "absorbed_kg": 0.0008975559347036595,
+      "surface_kg": 2.4440652961449438e-06,
+      "free_kg": 0.0002999999999999662,
+      "max_s": 0.9733535530131294,
+      "max_h_m": 1.2220326480724796e-05,
+      "accepted_steps": 8935,
+      "rejected_steps": 19,
+      "limited_edge_updates": 140864,
+      "max_mass_residual_kg": 4.198030811863873e-16
+    },
+    "time_comparison": {
+      "s_l2": 5.282292625171436e-08,
+      "relative_absorption_difference": 1.0954744287062011e-07
+    }
+  },
+  "geometry": {
+    "air_gap_max_change": 0.0,
+    "air_gap_components": 2,
+    "variance_x_m2": 3.266666328563571e-05,
+    "variance_z_m2": 1.766666328694656e-05,
+    "variance_ratio": 1.8490567661281154,
+    "stats": {
+      "accepted_steps": 213,
+      "rejected_steps": 2,
+      "limited_edge_updates": 0,
+      "max_mass_residual_kg": 8.673617379884035e-19
+    }
+  },
+  "remap": {
+    "conservative_relative_mass_error": 3.2808009001925425e-16,
+    "nearest_relative_mass_error": 0.009347154028004635,
+    "continued_l2_vs_fine_run": 0.0002931793682124037,
+    "interpretation": "Conservation is verified; remapping changes approximation error. Not a novelty claim."
+  },
+  "query": {
+    "original_s": 0.24000000000000005,
+    "volume_split_s": 0.24,
+    "count_weighted_split_s": 0.44999999999999996,
+    "direct_s_interpolation": 0.45,
+    "domain_gated_s": 0.8000000000000002,
+    "refinement": [
+      {
+        "n": 8,
+        "kernel": "cell_scaled",
+        "l2_error": 0.002725822899650394
+      },
+      {
+        "n": 8,
+        "kernel": "fixed_width",
+        "l2_error": 0.013022966140851258
+      },
+      {
+        "n": 16,
+        "kernel": "cell_scaled",
+        "l2_error": 0.0008621558592804518
+      },
+      {
+        "n": 16,
+        "kernel": "fixed_width",
+        "l2_error": 0.012797763887893372
+      },
+      {
+        "n": 32,
+        "kernel": "cell_scaled",
+        "l2_error": 0.0003160196570247556
+      },
+      {
+        "n": 32,
+        "kernel": "fixed_width",
+        "l2_error": 0.012740736989610037
+      }
+    ],
+    "interpretation": "Duplicate invariance is algebraic; real refinement and fixed-bandwidth bias are separate tests."
+  }
+}

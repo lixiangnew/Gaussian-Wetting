@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="500">
+<rect width="850" height="500" fill="white"/>
+<text x="70" y="30" font-family="sans-serif" font-size="18">top_profiles</text>
+<path d="M70 65 V420 H790" fill="none" stroke="black"/>
+<text x="60.0" y="443" font-size="12">0</text>
+<text x="8" y="424.0" font-size="12">0</text>
+<text x="204.0" y="443" font-size="12">0.0155</text>
+<text x="8" y="354.0" font-size="12">0.216</text>
+<text x="348.0" y="443" font-size="12">0.031</text>
+<text x="8" y="284.0" font-size="12">0.432</text>
+<text x="492.0" y="443" font-size="12">0.0465</text>
+<text x="8" y="214.0" font-size="12">0.648</text>
+<text x="636.0" y="443" font-size="12">0.062</text>
+<text x="8" y="144.0" font-size="12">0.864</text>
+<text x="780.0" y="443" font-size="12">0.0775</text>
+<text x="8" y="74.0" font-size="12">1.08</text>
+<polyline points="93.23,403.80 139.68,403.80 186.13,403.80 232.58,403.80 279.03,403.80 325.48,403.80 371.94,403.80 418.39,403.80 464.84,403.80 511.29,403.80 557.74,403.80 604.19,403.80 650.65,403.79 697.10,387.89 743.55,234.15 790.00,104.56 790.00,104.56" fill="none" stroke="#1769aa" stroke-width="2"/>
+<text x="90" y="60" fill="#1769aa" font-size="13">top</text>
+<polyline points="93.23,403.80 139.68,403.80 186.13,403.80 232.58,403.80 279.03,403.80 325.48,403.80 371.94,403.80 418.39,403.80 464.84,403.80 511.29,403.80 557.74,403.80 604.19,403.80 650.65,403.80 697.10,403.80 743.55,403.80 790.00,95.93 790.00,95.93" fill="none" stroke="#da7c16" stroke-width="2"/>
+<text x="265" y="60" fill="#da7c16" font-size="13">surface_only</text>
+<polyline points="93.23,403.80 139.68,403.80 186.13,403.80 232.58,403.80 279.03,403.80 325.48,403.80 371.94,403.80 418.39,403.80 464.84,403.80 511.29,403.80 557.74,403.80 604.19,403.80 650.65,403.80 697.10,403.80 743.55,403.80 790.00,403.80 790.00,403.80" fill="none" stroke="#31834a" stroke-width="2"/>
+<text x="440" y="60" fill="#31834a" font-size="13">impermeable</text>
+<text x="370" y="480">height z (m)</text><text x="10" y="55">S</text></svg>
