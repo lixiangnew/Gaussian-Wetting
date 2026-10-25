@@ -1,10 +1,13 @@
-# Only publish the A/B research prototype and repository documentation.
+# Publish the research prototypes and their documentation.
 /*
 !/.gitignore
 !/README.md
+!/高斯-Voronoi混合守恒输运方案.md
 !/requirements.txt
 !/stage_a_internal/
 !/stage_b_transport/
+!/stage_m2_partition/
+!/gaussian_transport/
 
 __pycache__/
 *.py[cod]

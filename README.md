@@ -1,105 +1,73 @@
 # Gaussian Wetting
 
-面向多孔材料吸水传播与高斯表示的研究原型。目前公开 **阶段 A：内部材料表示** 与 **阶段 B：守恒水分输运**，使用 Python / NumPy 在 CPU 上运行，无需 GPU、CUDA 或训练数据。
+这是一个面向多孔材料吸水传播与高斯渲染的研究原型。当前主方案采用 **高斯 + 裁剪 Voronoi** 混合结构：高斯负责连续材料表示、节点参数和渲染查询，Voronoi 控制体负责物理体积、公共交面和局部守恒。这样可以保留高斯对渲染和连续查询的适配能力，同时为有限体积输运提供明确的几何边界。
 
-当前目标是先检查代表体积、储水容量、连通关系和数值输运是否正确。底层代表域仍以规则单元为基础，不宣称已实现任意非规则高斯输运、真实材料参数识别或完整湿润渲染。
+完整的方法、变量定义与数据流见 [高斯-Voronoi 混合守恒输运方案](高斯-Voronoi混合守恒输运方案.md)，实现说明见 [gaussian_transport/README.md](gaussian_transport/README.md)。
 
-## 当前进展
+## 方法概览
 
-| 阶段 | 已实现 | 当前边界 |
-|---|---|---|
-| A 内部表示 | 内部高斯、非重叠代表体积、孔隙容量、域内邻接图、连通分量、分辨率对照 | 已知轴对齐盒体；不从照片恢复真实微孔 |
-| B 守恒输运 | 节点水质量、毛细与重力通量、表面储水交换、三份水库存、有界守恒更新、自适应步长 | 静止骨架、指定参数和供水；尚未接入完整外部液体运动 |
-| B 研究对照 | 交叠体积重映射、体积加权状态查询、阻隔/方向性和分辨率实验 | 候选方向验证，不构成已证明的新颖性或性能优势 |
-
-## 目录与阅读顺序
-
-```text
-Gaussian-Wetting/
-├── README.md
-├── requirements.txt
-├── stage_a_internal/
-│   ├── model.py                 # 内部表示、代表体积与邻接图
-│   ├── run_demo.py              # A 阶段演示与验收
-│   ├── test_model.py
-│   ├── CODE_GUIDE.md
-│   └── outputs/                # 保存的示例结果
-└── stage_b_transport/
-    ├── geometry.py             # 材料域与边界适配
-    ├── solver.py               # 守恒水分输运
-    ├── research.py             # 重映射及状态查询
-    ├── run_experiments.py
-    ├── run_followup.py
-    ├── summarize_outputs.py
-    ├── test_solver.py
-    ├── PLAN.md
-    ├── CODE_GUIDE.md
-    ├── RESULTS.md
-    └── outputs/
+```mermaid
+flowchart LR
+    A[内部高斯<br/>中心 μ 与协方差 Σ] --> B[同一连通域内归一化<br/>ψᵢ = Gᵢ / ΣGⱼ]
+    A --> C[以高斯中心为生成点<br/>裁剪 Voronoi]
+    C --> D[控制体 Vᵢ<br/>交面 Aᵢⱼ、法向 nᵢⱼ、距离 dᵢⱼ]
+    D --> E[容量 Cᵢ = ρ φᵢ Vᵢ]
+    D --> F[面导流率与成对通量 Fᵢⱼ]
+    E --> G[守恒且有界的质量更新]
+    F --> G
+    B --> H[连续查询与守恒重映射]
+    G --> H
+    H --> I[渲染高斯的湿润状态]
 ```
 
-建议先读 [A 阶段说明](stage_a_internal/README.md) 和 [A 代码导读](stage_a_internal/CODE_GUIDE.md)，再读 [B 实施方案](stage_b_transport/PLAN.md)、[B 代码导读](stage_b_transport/CODE_GUIDE.md) 与 [B 实验结果](stage_b_transport/RESULTS.md)。
+对物理节点 `i`，孔隙水容量为 `C_i = ρ_w φ_i V_i`，饱和度为 `S_i = m_i/C_i`。两个相邻控制体只通过共享交面交换质量；同一条边在两端使用大小相同、符号相反的通量，因此内部交换不会改变总水量。高斯协方差描述节点的空间影响范围，但主路线不直接把椭球积分当作控制体体积。
+
+## 目录
+
+| 路径 | 内容 |
+|---|---|
+| `高斯-Voronoi混合守恒输运方案.md` | 主方案、关键变量、输运与渲染查询流程 |
+| `stage_m2_partition/` | 高斯核、单位分解 `ψ_i`、积分和容量计算；也是混合原型的运行依赖 |
+| `gaussian_transport/` | 裁剪 Voronoi、图输运、平滑高斯候选、守恒重映射与验证 |
+| `stage_a_internal/` | 早期内部高斯与代表体积原型 |
+| `stage_b_transport/` | 早期守恒输运与表面供水原型 |
+
+`gaussian_transport/geometry.py` 实现二维裁剪 Voronoi，以及用于小规模参考验证的三维盒域版本；`transport.py` 实现容量、毛细势、渗透率、重力和有界质量交换；`remap.py` 用高斯单位分解在节点拆分或合并后守恒转移质量；`smooth_faces.py` 保留纯平滑高斯有效面的研究候选。
 
 ## 安装
 
-建议 Python 3.9 或更新版本。本地验证环境为 Python 3.9、NumPy 2.0.1。
+建议使用 Python 3.9 或更新版本。核心代码只依赖 NumPy。
 
 ```bash
 git clone https://github.com/lixiangnew/Gaussian-Wetting.git
 cd Gaussian-Wetting
 python -m venv .venv
-```
-
-激活虚拟环境：Windows PowerShell 使用 `.\.venv\Scripts\Activate.ps1`；Linux/macOS 使用 `source .venv/bin/activate`。然后安装依赖：
-
-```bash
 python -m pip install -r requirements.txt
 ```
 
-也可以直接使用已有的 NumPy 环境，无需创建虚拟环境。
+Windows PowerShell 可用 `.\.venv\Scripts\Activate.ps1` 激活环境；Linux/macOS 使用 `source .venv/bin/activate`。
 
-## 运行与测试
+## 测试与运行
 
-以下命令均在仓库根目录运行。先执行不依赖已生成结果的单元测试：
-
-```bash
-python -m unittest discover -s stage_a_internal -p test_model.py -v
-python -m unittest discover -s stage_b_transport -p test_solver.py -v
-```
-
-生成 A 演示，再按顺序运行 B 主实验、补充实验与结果汇总：
+以下命令均从仓库根目录执行：
 
 ```bash
-python stage_a_internal/run_demo.py
-python stage_b_transport/run_experiments.py
-python stage_b_transport/run_followup.py
-python stage_b_transport/summarize_outputs.py
+python -B -m unittest discover -s stage_m2_partition -p test_partition.py -v
+python -B -m unittest gaussian_transport.test_pipeline -v
+python -B -m gaussian_transport.run_all
 ```
 
-结果保存在对应阶段的 `outputs/` 中，重复运行会覆盖同名输出。B 完整实验比单元测试耗时更长；报告中 `status=completed` 表示该组实验执行结束。
+高斯体积分区的完整实验和绘图可分别运行；绘图脚本额外需要 Matplotlib：
 
-## 物理状态与数据流
+```bash
+python -B stage_m2_partition/run_experiments.py
+python -B stage_m2_partition/plot_results.py
+```
 
-每个内部节点代表材料体积 V，孔隙率为 φ，饱和度为 S。水质量为 `m = ρw × V × φ × S`，最大储水质量为 `ρw × V × φ`。高斯协方差用于空间表示，不直接决定物理容量。
+`gaussian_transport.run_all` 将 JSON/CSV 写入 `gaussian_transport/outputs/`。已有输出用于复核本次原型运行；重复执行会覆盖同名文件。
 
-指定供水进入表面储水库，再与孔隙水交换；内部通过成对通量迁移水质量。一端扣除的质量与另一端增加的质量相同，并对可供水量和剩余容量施加约束。
+## 当前范围
 
-自由水、表面水和孔隙水分别记账。表面等效厚度 h 与内部饱和度 S 分开保存；表面储水库不代表已模拟连续水膜的形状或横向流动。
+已实现的主线是已知二维盒域或由凸块组成的 L 形域上的裁剪 Voronoi，以及小规模三维盒域参考实现。代码检查控制体总体积、边界测度、成对守恒、容量约束、时间/空间收敛和节点拆分/合并后的质量守恒。
 
-## 已有验证与解释范围
-
-- A：固定几何下改变节点数量，材料总体积与孔隙容量保持一致；检查核宽、空气间隙、零孔隙率等情况。
-- B：检查质量守恒、容量界限、线性解析解、重力与渗透率作用，以及时间/空间离散敏感性。
-- 研究对照：比较交叠守恒重映射与简单复制，以及体积加权查询与不合适的权重策略。
-
-CSV/JSON 为数值指标；NPZ 为状态数组；SVG 为数值示意图。这些图不是 GS 渲染视频，合成参数结果也不是实测材料性能。具体数值和局限见各阶段报告。
-
-## 尚未解决的问题
-
-1. 复杂曲面、薄壁及裂缝的自动代表体积分配与连通性构建。
-2. 一般非正交节点布局和任意各向异性张量上的准确输运离散。
-3. 真实材料的孔隙率、渗透率及毛细曲线标定，以及非线性独立参考验证。
-4. 饱和承压流、排水、表面横向流动和自由液体双向耦合。
-5. 形变、湿胀、蒸发、困气，以及状态向完整湿润光学/GS 渲染的连接。
-
-当前仓库不包含上游 3DGS / GaussianFluent 源码，也不需要它们才能运行 A/B。
+平滑高斯有效面属于研究候选，目前不能替代主路线的显式 Voronoi 交面。任意非正交网格上的强各向异性输运也需要多点通量或梯度重构，不能把两点通量结果直接推广。真实材料参数标定、原型 FVM 接口、自由液体双向耦合和完整湿润渲染仍需在目标原型上验证。

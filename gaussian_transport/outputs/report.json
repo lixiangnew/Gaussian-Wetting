@@ -1,0 +1,267 @@
+{
+  "status": "PASS_WITH_REJECTED_CANDIDATES",
+  "seed": 20261023,
+  "git_commit": "250a4550d584d45add5ac61d4684e337708c31ea",
+  "python": "3.12.7",
+  "numpy": "2.2.6",
+  "scope": "M3-M6 independent CPU prototype; old external FVM parity remains BLOCKED",
+  "route_a": {
+    "box_volume_error": 0.0,
+    "box_boundary_error": 0.0,
+    "box_edges": 4,
+    "box_graph": {
+      "nodes": 4,
+      "edges": 4,
+      "average_neighbors": 2.0,
+      "self_loops": 0,
+      "duplicate_edges": 0
+    },
+    "l_volume_error": 1.1102230246251565e-16,
+    "l_boundary_error": 0.0,
+    "l_edges": 7,
+    "l_graph": {
+      "nodes": 6,
+      "edges": 7,
+      "average_neighbors": 2.3333333333333335,
+      "self_loops": 0,
+      "duplicate_edges": 0
+    }
+  },
+  "route_b": {
+    "gradient_fd_error": 7.848313110514482e-10,
+    "regular": {
+      "antisymmetry_max": 0.0,
+      "closure_linf": 8.830437954956094e-12,
+      "closure_relative": 2.970901755570273e-11,
+      "negative_projected_pairs": 0,
+      "retained_edges": 120,
+      "volume_relative_error": 3.3306690738754696e-16
+    },
+    "anisotropic_kernel": {
+      "antisymmetry_max": 0.0,
+      "closure_linf": 4.17597815708501e-11,
+      "closure_relative": 1.155551896730975e-10,
+      "negative_projected_pairs": 0,
+      "retained_edges": 120,
+      "volume_relative_error": 4.440892098500626e-16
+    },
+    "quadrature_crosscheck": {
+      "volume_relative_l2": 7.663967950375141e-12,
+      "area_vector_relative_l2": 3.0060549721626005e-11,
+      "boundary_vector_relative_l2": 3.028762117953682e-16
+    },
+    "boundary_perimeter_error": 4.440892098500626e-16,
+    "pruning_ablation": [
+      {
+        "relative_threshold": 0.0,
+        "retained_pairs": 120,
+        "closure_relative": 1.155551896730975e-10
+      },
+      {
+        "relative_threshold": 0.01,
+        "retained_pairs": 109,
+        "closure_relative": 0.0038269587685793457
+      },
+      {
+        "relative_threshold": 0.05,
+        "retained_pairs": 93,
+        "closure_relative": 0.0513609988010783
+      },
+      {
+        "relative_threshold": 0.1,
+        "retained_pairs": 78,
+        "closure_relative": 0.10654481524150403
+      }
+    ],
+    "anisotropic_kernel_projected_tpfa_patch_error": 0.31727997093622906,
+    "decision": "FAIL for general two-point transport; retain geometry candidate, do not use in main solver"
+  },
+  "convergence": [
+    {
+      "layout": "regular",
+      "n": 16,
+      "l1": 8.17565705631129e-06,
+      "l2": 9.066291499919029e-06,
+      "steps": 35,
+      "dt_s": 3.4285714285714284,
+      "mass_residual_kg": 0.0,
+      "front_error_m": 6.938893903907228e-18,
+      "min_mass_kg": 0.00012632488771481833,
+      "max_capacity_excess_kg": -0.00012632488771481993,
+      "preprocess_s": 0.09672679996583611,
+      "preprocess_peak_bytes": 62150,
+      "solve_s": 0.00742150004953146,
+      "edges": 15,
+      "average_neighbors": 1.875
+    },
+    {
+      "layout": "regular",
+      "n": 32,
+      "l1": 1.7121280280838619e-06,
+      "l2": 1.900932480909887e-06,
+      "steps": 137,
+      "dt_s": 0.8759124087591241,
+      "mass_residual_kg": -4.336808689942018e-19,
+      "front_error_m": 1.3877787807814457e-17,
+      "min_mass_kg": 6.30163443630933e-05,
+      "max_capacity_excess_kg": -6.301634436309492e-05,
+      "preprocess_s": 0.41059169999789447,
+      "preprocess_peak_bytes": 237262,
+      "solve_s": 0.021050099981948733,
+      "edges": 31,
+      "average_neighbors": 1.9375
+    },
+    {
+      "layout": "regular",
+      "n": 64,
+      "l1": 4.204338677760155e-07,
+      "l2": 4.6693773114856307e-07,
+      "steps": 547,
+      "dt_s": 0.21937842778793418,
+      "mass_residual_kg": 8.673617379884035e-19,
+      "front_error_m": 2.0816681711721685e-17,
+      "min_mass_kg": 3.148982998272509e-05,
+      "max_capacity_excess_kg": -3.1489829982722385e-05,
+      "preprocess_s": 2.2780761999310926,
+      "preprocess_peak_bytes": 887760,
+      "solve_s": 0.1478242001030594,
+      "edges": 63,
+      "average_neighbors": 1.96875
+    },
+    {
+      "layout": "perturbed",
+      "n": 16,
+      "l1": 0.0018526277329849658,
+      "l2": 0.0021950389779452767,
+      "steps": 35,
+      "dt_s": 3.4285714285714284,
+      "mass_residual_kg": 0.0,
+      "front_error_m": 1.3469808222761614e-05,
+      "min_mass_kg": 0.00011581671033702697,
+      "max_capacity_excess_kg": -0.00010794530379909807,
+      "preprocess_s": 0.15832750010304153,
+      "preprocess_peak_bytes": 60398,
+      "solve_s": 0.01032400003168732,
+      "edges": 15,
+      "average_neighbors": 1.875
+    },
+    {
+      "layout": "perturbed",
+      "n": 32,
+      "l1": 0.00043455832961626856,
+      "l2": 0.0006367143745859347,
+      "steps": 137,
+      "dt_s": 0.8759124087591241,
+      "mass_residual_kg": 0.0,
+      "front_error_m": 2.810846113227017e-07,
+      "min_mass_kg": 5.307143921053148e-05,
+      "max_capacity_excess_kg": -5.278628787100678e-05,
+      "preprocess_s": 0.6029936999548227,
+      "preprocess_peak_bytes": 194814,
+      "solve_s": 0.033057999913580716,
+      "edges": 31,
+      "average_neighbors": 1.9375
+    },
+    {
+      "layout": "perturbed",
+      "n": 64,
+      "l1": 0.0003013690130095875,
+      "l2": 0.0004252446565635364,
+      "steps": 547,
+      "dt_s": 0.21937842778793418,
+      "mass_residual_kg": 0.0,
+      "front_error_m": 7.826768011476304e-09,
+      "min_mass_kg": 2.6624347843549487e-05,
+      "max_capacity_excess_kg": -2.684996155624179e-05,
+      "preprocess_s": 2.8269333000062034,
+      "preprocess_peak_bytes": 827648,
+      "solve_s": 0.1507957000285387,
+      "edges": 63,
+      "average_neighbors": 1.96875
+    }
+  ],
+  "time_convergence": [
+    {
+      "dt_s": 0.2,
+      "l2_vs_dt_0_00625": 3.645576916760535e-06,
+      "steps": 600,
+      "mass_residual_kg": 4.336808689942018e-19
+    },
+    {
+      "dt_s": 0.1,
+      "l2_vs_dt_0_00625": 1.7638098133295493e-06,
+      "steps": 1200,
+      "mass_residual_kg": -1.3010426069826053e-18
+    },
+    {
+      "dt_s": 0.05,
+      "l2_vs_dt_0_00625": 8.230694832122556e-07,
+      "steps": 2400,
+      "mass_residual_kg": 0.0
+    }
+  ],
+  "ledger": {
+    "wet": {
+      "pore": 0.00035974565053974666,
+      "surface": 2.543494602531238e-07,
+      "free": 0.0011399999999999989,
+      "accepted_steps": 62,
+      "rejected_steps": 1,
+      "limited_updates": 1488,
+      "max_mass_residual_kg": 1.734723475976807e-18
+    },
+    "impermeable": {
+      "pore": 0.0,
+      "surface": 5.999999999999932e-05,
+      "free": 0.0011399999999999924,
+      "accepted_steps": 40,
+      "rejected_steps": 0,
+      "limited_updates": 0,
+      "max_mass_residual_kg": 8.456776945386935e-18
+    }
+  },
+  "patch_tests": {
+    "constant_potential_max_rate": 0.0,
+    "isotropic_tpfa_relative_error": 8.476559059386573e-16,
+    "anisotropic_tpfa_relative_error": 0.46784826398926393,
+    "anisotropic_reconstructed_relative_error": 9.854118698104003e-16,
+    "decision": "Use TPFA only for scalar/K-orthogonal cases; use multipoint gradient reconstruction diagnostic for general anisotropy."
+  },
+  "disconnected": {
+    "components": 2,
+    "gap_m": 0.01,
+    "cross_component_edges": 0
+  },
+  "three_d": {
+    "nodes": 27,
+    "voronoi_volume_error": 0.0,
+    "gaussian_partition_volume_error": 2.220446049250313e-16,
+    "volume_definition_relative_l1": 0.05454003953265387,
+    "voronoi_preprocess_s": 19.61883230006788,
+    "voronoi_peak_bytes": 184299,
+    "edges": 109
+  },
+  "adaptive_remap": {
+    "split": {
+      "relative_mass_error": 0.0,
+      "max_column_partition_error": 6.661338147750939e-16,
+      "max_capacity_excess_kg": -4.981036235266865,
+      "old_volume": 0.9999999999999998,
+      "new_volume": 0.9999999999999998
+    },
+    "merge": {
+      "relative_mass_error": 1.9945059249406324e-16,
+      "max_column_partition_error": 5.551115123125783e-16,
+      "max_capacity_excess_kg": -13.521468498341392,
+      "old_volume": 0.9999999999999998,
+      "new_volume": 0.9999999999999998
+    },
+    "roundtrip_saturation_l2": 0.07814269688069593,
+    "classification": "project candidate; conservative but introduces remap diffusion"
+  },
+  "blockers": [
+    "Original external FVM source unavailable: M0/M1 strict parity BLOCKED.",
+    "Smooth Gaussian projected two-point flux rejected for anisotropic kernels.",
+    "Full MPFA nonlinear Richards solver and production 3D complex-geometry mesher remain future work."
+  ]
+}
